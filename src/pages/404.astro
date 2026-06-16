@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Page not found">
+  <div class="flex min-h-screen flex-col items-center justify-center px-4 text-center">
+    <p class="text-foreground m-0 font-mono text-[120px] leading-none font-medium tracking-[-6px] opacity-[0.08]">
+      404
+    </p>
+    <h1 class="text-foreground -mt-10 mb-3 text-2xl font-medium">Page not found</h1>
+    <p class="text-foreground/50 mb-8 max-w-75 text-sm leading-relaxed">
+      The page you're looking for doesn't exist or has been moved.
+    </p>
+    <a href="/" class="inline-flex items-center gap-2 text-sm font-medium">
+      <Icon name="lucide:chevron-left" />
+      Back to home
+    </a>
+  </div>
+</Layout>

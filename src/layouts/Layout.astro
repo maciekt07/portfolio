@@ -1,16 +1,73 @@
 ---
+import Font from "astro/components/Font.astro";
 import "../styles/global.css";
+interface Props {
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+}
+
+const {
+  title = "Maciej Twaróg",
+  description = "Full-stack developer specializing in modern web technologies. Building fast, accessible, and user-friendly applications.",
+  url = "https://maciejtwarog.dev",
+  image = "/og-image.png",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, url);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const isDark = stored === "dark" || (!stored && prefersDark);
+          document.documentElement.classList.toggle("dark", isDark);
+          document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+        } catch {
+          document.documentElement.classList.add("dark");
+          document.documentElement.style.colorScheme = "dark";
+        }
+      })();
+    </script>
+
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonicalURL} />
+    <Font cssVariable="--font-space-grotesk" preload />
     <meta name="generator" content={Astro.generator} />
-    <title>Maciej Twaróg</title>
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Maciej Twaróg" />
+    <meta name="keywords" content="full-stack developer, web development, Next.js, TypeScript, Astro, portfolio" />
+
+    <!-- OG -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, url)} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Maciej Twaróg" />
+
+    <!-- X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, url)} />
+
+    <!-- misc -->
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#000000" />
   </head>
   <body>
     <slot />

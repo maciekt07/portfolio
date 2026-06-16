@@ -1,0 +1,88 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false" class="theme-toggle">
+  <Icon name="lucide:sun" class="theme-icon theme-icon-sun" aria-hidden="true" />
+  <Icon name="lucide:moon" class="theme-icon theme-icon-moon" aria-hidden="true" />
+</button>
+
+<style>
+  .theme-toggle {
+    position: fixed;
+    top: clamp(1rem, 2vw, 1.75rem);
+    right: clamp(1rem, 2vw, 1.75rem);
+    z-index: 10;
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    place-items: center;
+    color: var(--foreground);
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .theme-toggle:hover {
+    background: var(--panel-hover);
+    border-color: var(--panel-border);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 4px;
+  }
+
+  .theme-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .theme-icon-sun {
+    display: none;
+  }
+
+  :global(.dark) .theme-icon-sun {
+    display: block;
+  }
+
+  :global(.dark) .theme-icon-moon {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector("[data-theme-toggle]");
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+
+  const syncTheme = () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    toggle?.setAttribute("aria-pressed", String(isDark));
+    metaTheme?.setAttribute("content", isDark ? "#000000" : "#f7f7f4");
+    document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+  };
+
+  syncTheme();
+
+  toggle?.addEventListener("click", () => {
+    const style = document.createElement("style");
+    style.textContent = "* { transition: none !important; }";
+    document.head.appendChild(style);
+
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    syncTheme();
+
+    requestAnimationFrame(() => document.head.removeChild(style));
+  });
+</script>

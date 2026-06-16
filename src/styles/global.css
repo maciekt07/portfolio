@@ -1,8 +1,65 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-panel: var(--panel);
+  --color-panel-border: var(--panel-border);
+  --color-panel-hover: var(--panel-hover);
+}
+:root {
+  --background: #f7f7f4;
+  --foreground: #101010;
+  --muted: #656565;
+  --panel: #ffffff;
+  --panel-border: rgb(16 16 16 / 0.08);
+  --panel-hover: rgb(16 16 16 / 0.06);
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #f4f4f1;
+  --muted: #8d8d8d;
+  --panel: #111111;
+  --panel-border: rgb(255 255 255 / 0.06);
+  --panel-hover: rgb(255 255 255 / 0.08);
+}
+
 html,
 body {
   margin: 0;
   width: 100%;
-  height: 100%;
-  background: black;
+  min-height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    var(--font-space-grotesk),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  ::selection {
+    background: var(--foreground);
+    color: var(--background);
+  }
+
+  ::-moz-selection {
+    background: var(--foreground);
+    color: var(--background);
+  }
+}
+
+body {
+  min-height: 100vh;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }

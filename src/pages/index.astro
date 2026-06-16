@@ -1,7 +1,53 @@
 ---
+import { Icon } from "astro-icon/components";
+import ToggleTheme from "../components/ToggleTheme.astro";
 import Layout from "../layouts/Layout.astro";
+
+type Social = {
+  label: string;
+  href: string;
+  icon: string;
+};
+
+const socials = [
+  { label: "GitHub", href: "https://github.com/maciekt07", icon: "simple-icons:github" },
+  { label: "Email", href: "mailto:contact@maciejtwarog.dev", icon: "lucide:mail" },
+  { label: "X", href: "https://x.com/maciekt07", icon: "simple-icons:x" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/maciej-twarog/", icon: "simple-icons:linkedin" },
+] as const satisfies Social[];
 ---
 
 <Layout>
-  <h1 class="text-2xl text-slate-100">I like to code</h1>
+  <ToggleTheme />
+
+  <main class="grid min-h-svh place-items-center px-6 py-24" aria-labelledby="intro-title">
+    <section class="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+      <h1
+        id="intro-title"
+        class="text-foreground text-5xl font-medium tracking-tight text-balance sm:text-6xl md:text-7xl"
+      >
+        Maciej Twaróg
+      </h1>
+
+      <p class="text-muted mt-5 text-xl sm:text-2xl">Full-Stack Web Developer</p>
+
+      <p class="text-muted mt-8 max-w-xl text-lg leading-8 text-pretty sm:text-xl">I like to code.</p>
+
+      <nav class="mt-10 flex flex-wrap items-center justify-center gap-4" aria-label="Social links">
+        {
+          socials.map(({ label, href, icon }) => (
+            <a
+              class="border-panel-border bg-panel text-foreground hover:bg-panel-hover focus-visible:outline-foreground grid size-12 place-items-center rounded-full border transition focus-visible:outline-2 focus-visible:outline-offset-4 motion-reduce:transition-none"
+              href={href}
+              aria-label={label}
+              rel={href.startsWith("mailto") ? undefined : "noreferrer"}
+              target={href.startsWith("mailto") ? undefined : "_blank"}
+            >
+              <Icon name={icon} class="size-5" aria-hidden="true" />
+            </a>
+          ))
+        }
+      </nav>
+    </section>
+  </main>
 </Layout>
