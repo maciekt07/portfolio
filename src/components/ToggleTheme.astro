@@ -19,17 +19,9 @@ import { Icon } from "astro-icon/components";
     place-items: center;
     color: var(--foreground);
     cursor: pointer;
-    border: 1px solid transparent;
+    border: none;
     border-radius: 999px;
     background: transparent;
-    transition:
-      background-color 160ms ease,
-      border-color 160ms ease;
-  }
-
-  .theme-toggle:hover {
-    background: var(--panel-hover);
-    border-color: var(--panel-border);
   }
 
   .theme-toggle:focus-visible {
@@ -52,12 +44,6 @@ import { Icon } from "astro-icon/components";
 
   :global(.dark) .theme-icon-moon {
     display: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .theme-toggle {
-      transition: none;
-    }
   }
 </style>
 

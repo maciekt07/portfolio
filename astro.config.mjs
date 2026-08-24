@@ -28,7 +28,7 @@ export default defineConfig({
     {
       provider: fontProviders.npm(),
       name: "Fraunces",
-      cssVariable: "--font-space-grotesk",
+      cssVariable: "--font-fraunces",
       weights: [400, 500, 600],
       subsets: ["latin-ext"],
       display: "swap",
