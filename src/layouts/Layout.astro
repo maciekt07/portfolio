@@ -12,7 +12,7 @@ const {
   title = "Maciej Twaróg",
   description = "Full-stack developer specializing in modern web technologies. Building fast, accessible, and user-friendly applications.",
   url = "https://maciejtwarog.dev",
-  image = "/og-image.png",
+  image = "/og.png",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, url);
@@ -40,6 +40,7 @@ const canonicalURL = new URL(Astro.url.pathname, url);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalURL} />
     <Font cssVariable="--font-fraunces" preload />
     <meta name="generator" content={Astro.generator} />
@@ -56,6 +57,9 @@ const canonicalURL = new URL(Astro.url.pathname, url);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, url)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Maciej Twaróg" />
 
@@ -64,11 +68,37 @@ const canonicalURL = new URL(Astro.url.pathname, url);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, url)} />
+    <meta name="twitter:site" content="@maciekt07" />
+    <meta name="twitter:creator" content="@maciekt07" />
 
     <!-- misc -->
     <meta name="robots" content="index, follow" />
     <meta name="google-site-verification" content="_2ffSLGL55XFWA0GIdcPrUCcWwHkcNb2PNo5vZAGVp4" />
     <meta name="theme-color" content="#000000" />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Maciej Twaróg",
+        email: "contact@maciejtwarog.dev",
+        url: "https://maciejtwarog.dev",
+        jobTitle: "Full-Stack Web Developer",
+        knowsAbout: ["Web Development", "TypeScript", "React", "Next.js", "Astro", "Tailwind CSS"],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Kraków",
+          addressCountry: "PL",
+        },
+        sameAs: [
+          "https://github.com/maciekt07",
+          "https://x.com/maciekt07",
+          "https://www.linkedin.com/in/maciej-twarog/",
+        ],
+      })}
+    />
   </head>
   <body>
     <slot />

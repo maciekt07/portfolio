@@ -40,6 +40,6 @@ export default defineConfig([
     },
   },
   {
-    ignores: ["dist/**", "**/*.d.ts", ".github/"],
+    ignores: ["dist/**", "**/*.d.ts", ".github/", ".vercel/"],
   },
 ]);
