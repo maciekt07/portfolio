@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "astro": "astro",
+    "preview": "astro preview",
     "check": "astro check && pnpm lint && pnpm format:check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -15,7 +16,6 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/vercel": "^11.0.7",
     "@iconify-json/lucide": "^1.2.113",
     "@iconify-json/simple-icons": "^1.2.86",
     "@tailwindcss/vite": "^4.3.0",

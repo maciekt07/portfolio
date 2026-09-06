@@ -2,14 +2,12 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import icon from "astro-icon";
-import vercel from "@astrojs/vercel";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://maciejtwarog.dev",
-  adapter: vercel(),
-
+  output: "static",
   integrations: [
     icon({
       iconDir: "src/icons",
