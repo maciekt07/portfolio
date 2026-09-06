@@ -1,6 +1,6 @@
 // @ts-check
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, envField, fontProviders } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import icon from "astro-icon";
 import vercel from "@astrojs/vercel";
 import sitemap from "@astrojs/sitemap";
@@ -36,12 +36,4 @@ export default defineConfig({
       fallbacks: ["system-ui", "sans-serif"],
     },
   ],
-  env: {
-    schema: {
-      RESUME_BLOB_URL: envField.string({
-        context: "server",
-        access: "public",
-      }),
-    },
-  },
 });
